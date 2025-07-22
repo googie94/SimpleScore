@@ -6,6 +6,7 @@ import AppNavigator from './src/navigation/AppNavigator';
 import { useGameStore } from './src/store/gameStore';
 import { useFonts } from '@expo-google-fonts/vt323';
 import { Orbitron_400Regular, Orbitron_700Bold } from '@expo-google-fonts/orbitron';
+import { logAppStart } from './src/utils/analytics';
 
 export default function App() {
   const createGame = useGameStore((state) => state.createGame);
@@ -17,6 +18,9 @@ export default function App() {
   });
 
   useEffect(() => {
+    // Log app start event for Firebase Analytics
+    logAppStart();
+    
     // Create a default game when app starts
     createGame();
     

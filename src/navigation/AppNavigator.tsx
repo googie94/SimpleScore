@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ScoreboardScreen from '../screens/ScoreboardScreen';
 import TimerScreen from '../screens/TimerScreen';
+import { logScreenView } from '../utils/analytics';
 
 export type RootStackParamList = {
   Scoreboard: undefined;
@@ -13,7 +14,14 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      onStateChange={(state) => {
+        const currentScreen = state?.routes[state.index]?.name;
+        if (currentScreen) {
+          logScreenView(currentScreen);
+        }
+      }}
+    >
       <Stack.Navigator
         screenOptions={{
           headerShown: false,

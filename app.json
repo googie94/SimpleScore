@@ -13,7 +13,9 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.koognues.simplescore",
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
@@ -25,13 +27,27 @@
       "statusBarStyle": "dark",
       "statusBarBackgroundColor": "#0F172A",
       "navigationBarStyle": "dark-content",
-      "package": "com.anonymous.simplescore"
+      "package": "com.koognues.simplescore",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-font"
+      "expo-font",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "debugSymbols": true,
+            "buildSettings": {
+              "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
+              "DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT": "YES",
+              "ONLY_ACTIVE_ARCH": false
+            }
+          }
+        }
+      ]
     ]
   }
 }
